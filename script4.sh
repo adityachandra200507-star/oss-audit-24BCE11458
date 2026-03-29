@@ -1,13 +1,20 @@
-
 #!/bin/bash
 
-LOGFILE="/var/log/dpkg.log"
+LOGFILE=$1
+KEYWORD="error"
+COUNT=0
 
 if [ ! -f "$LOGFILE" ]; then
-  echo "Log file not found"
+  echo "File not found"
   exit 1
 fi
 
-COUNT=$(grep -i error $LOGFILE | wc -l)
+while read LINE
+do
+  if echo "$LINE" | grep -i "$KEYWORD" > /dev/null
+  then
+    COUNT=$((COUNT + 1))
+  fi
+done < "$LOGFILE"
 
-echo "Number of errors: $COUNT"
+echo "Total lines containing '$KEYWORD': $COUNT"

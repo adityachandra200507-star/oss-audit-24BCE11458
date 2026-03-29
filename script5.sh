@@ -1,13 +1,22 @@
 #!/bin/bash
 
-echo "Answer these questions:"
+# Alias example (concept demonstration)
+# alias ll='ls -l'
+
+echo "Answer the following questions:"
 
 read -p "Tool you use: " TOOL
 read -p "Freedom means: " FREEDOM
 read -p "What will you build: " BUILD
 
+DATE=$(date '+%d %B %Y')
+OUTPUT="manifesto.txt"
+
+echo "On $DATE, I believe in open source." > $OUTPUT
+echo "I use $TOOL in my daily work." >> $OUTPUT
+echo "Freedom means $FREEDOM." >> $OUTPUT
+echo "I will build $BUILD and share it with the community." >> $OUTPUT
+
 echo ""
-echo "My Open Source Manifesto:"
-echo "I use $TOOL."
-echo "Freedom means $FREEDOM."
-echo "I will build $BUILD and share it."
+echo "Manifesto saved to $OUTPUT"
+cat $OUTPUT
